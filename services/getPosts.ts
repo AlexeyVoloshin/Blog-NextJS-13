@@ -1,19 +1,19 @@
 async function getAllPosts() {
-    const response = await fetch('api/posts', {
-        next: {
-            revalidate: 60,
-        }
-    })
+  const response = await fetch('api/posts', {
+    next: {
+      revalidate: 60,
+    },
+  });
 
-    if(!response.ok) throw new Error('Unable to fetch posts!')
+  if(!response.ok) throw new Error('Unable to fetch posts!');
 
-    return response.json();
+  return response.json();
 }
 
 async function getPostsBySearch(search: string) {
-    const response = await fetch(`api/posts?q=${search}`)
+  const response = await fetch(`api/posts?q=${search}`);
 
-    return response.json();
+  return response.json();
 }
 
-export {getAllPosts, getPostsBySearch}
+export {getAllPosts, getPostsBySearch};

@@ -1,20 +1,21 @@
-import { NextResponse } from "next/server";
-import { posts } from "./posts";
+import { posts } from './posts';
+
+import { NextResponse } from 'next/server';
 
 export async function GET(req:Request) {
-    const {searchParams} = new URL(req.url);
+  const {searchParams} = new URL(req.url);
 
-    const query = searchParams.get('q');
+  const query = searchParams.get('q');
 
-    let currentPosts = posts;
+  let currentPosts = posts;
 
-    if (query) {
-        currentPosts = posts.filter(post => post.title.toLocaleLowerCase().includes(query.toLowerCase()))
-    }
-    return NextResponse.json(currentPosts)
+  if (query) {
+    currentPosts = posts.filter(post => post.title.toLocaleLowerCase().includes(query.toLowerCase()));
+  }
+  return NextResponse.json(currentPosts);
 }
 
 export async function POST(req:Request) {
-    const body = await req.json()
-    return NextResponse.json({ body })
+  const body = await req.json();
+  return NextResponse.json({ body });
 }
